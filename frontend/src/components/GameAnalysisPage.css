@@ -1,0 +1,41 @@
+/* GameAnalysisPage.css */
+
+.header {
+    background-color: #4096ff;
+    padding: 0 24px;
+  }
+  
+  .content {
+    padding: 24px;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+  }
+  
+  .game-analysis {
+    text-align: center;
+  }
+  
+  .countdown {
+    margin: 20px 0;
+  }
+  
+  .lineups {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .lineup {
+    width: 45%;
+  }
+  
+  .lineup ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .lineup li {
+    margin: 5px 0;
+  }
+  

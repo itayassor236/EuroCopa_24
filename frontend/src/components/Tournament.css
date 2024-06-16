@@ -1,0 +1,71 @@
+.tournament-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #3333339a;
+  padding: 10px;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+}
+
+.stats-table {
+  flex: 1;
+  padding: 20px;
+}
+
+.stats-table ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.stats-table li {
+  margin-bottom: 5px;
+}
+
+.games-list {
+  flex: 2;
+  padding: 20px;
+}
+
+.game {
+  margin-bottom: 10px;
+}
+
+.standings-table {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

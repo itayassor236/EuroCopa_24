@@ -1,0 +1,51 @@
+.team-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-page-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .intro-players,
+  .players-list,
+  .team-standings {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .intro-player,
+  .player {
+    margin-bottom: 10px;
+  }
+  
+  .intro-player h3,
+  .player span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .intro-player p {
+    margin: 5px 0 0;
+  }
+  
+  .team-standings table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .team-standings th,
+  .team-standings td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .team-standings th {
+    background-color: #f2f2f2;
+  }
+  

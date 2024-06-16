@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.48342e80.css",
+    "main.js": "/static/js/main.284c153b.js",
+    "static/media/backgroundHome.jpg": "/static/media/backgroundHome.5a6c68b621c2e600c541.jpg",
+    "static/media/euro-2024-logo.png": "/static/media/euro-2024-logo.34d9e73555dd67a2d846.png",
+    "static/media/background.jpg": "/static/media/background.fb2c370c35d701324870.jpg",
+    "static/media/Copa_America_2024_Logo.png": "/static/media/Copa_America_2024_Logo.a86e8b8156a95c3b7406.png",
+    "static/media/logo.png": "/static/media/logo.6c743b685fb59e99ea0e.png",
+    "index.html": "/index.html",
+    "main.48342e80.css.map": "/static/css/main.48342e80.css.map",
+    "main.284c153b.js.map": "/static/js/main.284c153b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48342e80.css",
+    "static/js/main.284c153b.js"
+  ]
+}

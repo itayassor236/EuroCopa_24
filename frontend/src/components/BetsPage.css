@@ -1,0 +1,93 @@
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+/* Header styles */
+.header {
+  background-color: #4096ff;
+  padding: 0 24px;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #001529;
+  color: #fff;
+}
+
+.sidebar-content {
+  padding: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.section-data {
+  font-size: 16px;
+  color: #fff;
+}
+
+.save-bets-button {
+  margin-top: 16px;
+}
+
+/* Content styles */
+.content-layout {
+  padding: 24px;
+}
+
+/* Match container */
+.match {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+/* Match details */
+.match-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.match-detail {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Teams with cubes container */
+.teams-with-cubes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+}
+
+.team-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.cube-input {
+  width: 60px;
+  margin-right: 8px;
+}
+
+.vs {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 16px;
+}

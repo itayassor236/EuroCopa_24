@@ -1,0 +1,23 @@
+/* SquadsPage.css */
+
+.squads-page {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .squads-content {
+    width: 60%;
+  }
+  
+  .teams-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .team {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  

@@ -1,0 +1,13 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('./assets/background.jpg'); /* Add your background image path here */
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}

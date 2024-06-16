@@ -1,0 +1,18 @@
+/* Navbar.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #33333300;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 1000; /* Ensures the navbar is above other elements */
+  }
+  
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   
