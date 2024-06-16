@@ -13,7 +13,7 @@ const euroTeamsData = require('./euroteams.json');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 7077;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -350,4 +350,9 @@ app.get('/api/top-players', (req, res) => {
     console.error('Error reading Excel file:', error);
     res.status(500).json({ error: 'Failed to fetch top players data' });
   }
+});
+
+app.get('/',  (req, res) => {
+
+  res.send('Hello, the server is running!');
 });
