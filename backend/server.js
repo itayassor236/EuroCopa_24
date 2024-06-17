@@ -61,7 +61,7 @@ const euroTeams = euroTeamsData.teams.map(team => team.name);
 // Endpoint to fetch all players data
 app.get('/api/players', (req, res) => {
   try {
-    const workbook = xlsx.readFile("C:\\Users\\OWNER\\Desktop\\PLAYERS.xlsx");
+    const workbook = xlsx.readFile("excels\\PLAYERS.xlsx");
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
     const players = xlsx.utils.sheet_to_json(sheet);
@@ -81,7 +81,7 @@ app.get('/api/players', (req, res) => {
 // Endpoint to fetch euro 2024 players data
 app.get('/api/euro2024_players', (req, res) => {
   try {
-    const workbook = xlsx.readFile("C:\\Users\\OWNER\\Desktop\\euro2024_players.xlsx");
+    const workbook = xlsx.readFile("excels\\euro2024_players.xlsx");
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
     const players = xlsx.utils.sheet_to_json(sheet);
@@ -101,7 +101,7 @@ app.get('/api/matches/:gameId', (req, res) => {
   const gameId = req.params.gameId;
 
   try {
-    const workbook = xlsx.readFile('C:\\Users\\OWNER\\Desktop\\EURO_2024.xlsx');
+    const workbook = xlsx.readFile('excels\\EURO_2024.xlsx');
     const sheetName = 'Daily schedule';
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = xlsx.utils.sheet_to_json(worksheet);
@@ -136,7 +136,7 @@ app.get('/api/matches/:gameId', (req, res) => {
 
 app.get('/api/matches', (req, res) => {
   try {
-    const workbook = xlsx.readFile('C:\\Users\\OWNER\\Desktop\\EURO_2024.xlsx');
+    const workbook = xlsx.readFile('excels\\EURO_2024.xlsx');
     const sheetName = 'Daily schedule';
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = xlsx.utils.sheet_to_json(worksheet);
@@ -162,7 +162,7 @@ app.get('/api/matches', (req, res) => {
 // Endpoint to fetch predicted lineups for a specific team
 app.get('/api/predicted-lineups/:team', (req, res) => {
   const { team } = req.params;
-  const filePath = 'C://Users//OWNER//Desktop//euro2024_players.xlsx';
+  const filePath = 'excels\\euro2024_players.xlsx';
 
   // Check if the file exists
   if (!fs.existsSync(filePath)) {
@@ -258,7 +258,7 @@ const processMatches = (matches) => {
 
 app.get('/api/standings', (req, res) => {
   try {
-    const workbook = xlsx.readFile('C:\\Users\\OWNER\\Desktop\\EURO_2024.xlsx');
+    const workbook = xlsx.readFile('excels\\EURO_2024.xlsx');
     const sheetName = 'EURO';
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
@@ -306,7 +306,7 @@ app.get('/api/standings', (req, res) => {
 });
 
 app.get('/api/top-players', (req, res) => {
-  const filePath = 'C://Users//OWNER//Desktop//euro2024_players.xlsx';
+  const filePath = 'excels\\euro2024_players.xlsx';
 
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({ error: 'Excel file not found' });
