@@ -101,7 +101,11 @@ app.get('/api/matches/:gameId', (req, res) => {
   const gameId = req.params.gameId;
 
   try {
-    const workbook = xlsx.readFile('excels\\EURO_2024.xlsx');
+    const filePath = path.join(__dirname, 'excels', 'EURO_2024.xlsx');
+    if (!fs.existsSync(filePath)) {
+      throw new Error('File not found');
+    }
+    const workbook = xlsx.readFile(filePath);
     const sheetName = 'Daily schedule';
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = xlsx.utils.sheet_to_json(worksheet);
@@ -136,7 +140,11 @@ app.get('/api/matches/:gameId', (req, res) => {
 
 app.get('/api/matches', (req, res) => {
   try {
-    const workbook = xlsx.readFile('excels\\EURO_2024.xlsx');
+    const filePath = path.join(__dirname, 'excels', 'EURO_2024.xlsx');
+    if (!fs.existsSync(filePath)) {
+      throw new Error('File not found');
+    }
+    const workbook = xlsx.readFile(filePath);
     const sheetName = 'Daily schedule';
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = xlsx.utils.sheet_to_json(worksheet);

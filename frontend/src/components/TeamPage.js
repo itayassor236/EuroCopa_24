@@ -42,7 +42,7 @@ const TeamPage = ({ user }) => {
       
       const fetchEuroPlayers = async () => {
         try {
-          const response = await fetch('http://localhost:7077/api/euro2024_players');
+          const response = await fetch('http://localhost:8000/api/euro2024_players');
           const data = await response.json();
           console.log(data);
   
