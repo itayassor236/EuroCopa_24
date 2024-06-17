@@ -37,7 +37,7 @@ const SignUpModal = ({ onClose }) => {
 
     // Save the email and password to the database
     try {
-      const response = await fetch('http://localhost:8000/api/auth/signup', {
+      const response = await fetch('https://eurocopa-24-backend.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ const TeamPage = ({ user }) => {
   useEffect(() => {
     const fetchPlayers = async () => {
         try {
-          const response = await fetch('http://localhost:8000/api/players');
+          const response = await fetch('https://eurocopa-24-backend.onrender.com/api/players');
           const data = await response.json();
       
           const teamPlayers = data.filter((player) => player.nationality === team.name);
@@ -42,7 +42,7 @@ const TeamPage = ({ user }) => {
       
       const fetchEuroPlayers = async () => {
         try {
-          const response = await fetch('http://localhost:8000/api/euro2024_players');
+          const response = await fetch('https://eurocopa-24-backend.onrender.com/api/euro2024_players');
           const data = await response.json();
           console.log(data);
   
