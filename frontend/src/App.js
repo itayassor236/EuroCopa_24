@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import LandingPage from './components/LandingPage';
 import Euro2024 from './components/Euro2024';
