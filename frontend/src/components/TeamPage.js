@@ -18,7 +18,7 @@ const TeamPage = ({ user }) => {
   useEffect(() => {
     const fetchPlayers = async () => {
         try {
-          const response = await fetch('http://localhost:7077/api/players');
+          const response = await fetch('http://localhost:8000/api/players');
           const data = await response.json();
       
           const teamPlayers = data.filter((player) => player.nationality === team.name);

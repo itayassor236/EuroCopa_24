@@ -20,7 +20,7 @@ const Euro2024 = ({ user }) => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await fetch('http://localhost:7077/api/matches');
+        const response = await fetch('https://eurocopa-24-backend.onrender.com/api/matches');
         if (!response.ok) {
           throw new Error('Failed to fetch match data');
         }
@@ -43,7 +43,7 @@ const Euro2024 = ({ user }) => {
 
     const fetchStandings = async () => {
       try {
-        const response = await fetch('http://localhost:7077/api/standings');
+        const response = await fetch('https://eurocopa-24-backend.onrender.com/api/standings');
         if (!response.ok) {
           throw new Error('Failed to fetch standings data');
         }
@@ -72,7 +72,7 @@ const Euro2024 = ({ user }) => {
 
     const fetchTopPlayers = async () => {
       try {
-        const response = await fetch('http://localhost:7077/api/top-players'); // Example API endpoint for top players
+        const response = await fetch('https://eurocopa-24-backend.onrender.com/api/top-players'); // Example API endpoint for top players
         if (!response.ok) {
           throw new Error('Failed to fetch top players data');
         }

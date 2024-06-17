@@ -16,7 +16,7 @@ const BetsPage = ({ user }) => {
 
   const fetchMatches = async () => {
     try {
-      const response = await fetch('http://localhost:7077/api/matches');
+      const response = await fetch('http://localhost:8000/api/matches');
       if (!response.ok) {
         throw new Error('Failed to fetch match data');
       }

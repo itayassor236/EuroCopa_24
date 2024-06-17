@@ -19,7 +19,7 @@ const GameAnalysisPage = ({ user }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const matchResponse = await fetch(`http://localhost:7077/api/matches/${gameId}`);
+        const matchResponse = await fetch(`http://localhost:8000/api/matches/${gameId}`);
         if (!matchResponse.ok) {
           throw new Error('Failed to fetch match details');
         }
@@ -29,9 +29,9 @@ const GameAnalysisPage = ({ user }) => {
         const matchDateTime = new Date(matchDateTimeString);
 
         const [response1, response2, standingsResponse] = await Promise.all([
-          fetch(`http://localhost:7077/api/predicted-lineups/${encodeURIComponent(matchData.team1)}`),
-          fetch(`http://localhost:7077/api/predicted-lineups/${encodeURIComponent(matchData.team2)}`),
-          fetch('http://localhost:7077/api/standings')
+          fetch(`http://localhost:8000/api/predicted-lineups/${encodeURIComponent(matchData.team1)}`),
+          fetch(`http://localhost:8000/api/predicted-lineups/${encodeURIComponent(matchData.team2)}`),
+          fetch('http://localhost:8000/api/standings')
         ]);
 
         if (!response1.ok || !response2.ok || !standingsResponse.ok) {

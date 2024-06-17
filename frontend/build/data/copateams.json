@@ -1,0 +1,21 @@
+{
+    "teams": [
+      { "name": "Argentina", "group": "A" },
+      { "name": "Canada", "group": "A" },
+      { "name": "Peru", "group": "A" },
+      { "name": "Chile", "group": "A" },
+      { "name": "Ecuador", "group": "B" },
+      { "name": "Venezuela", "group": "B" },
+      { "name": "Mexico", "group": "B" },
+      { "name": "Jamaica", "group": "B" },
+      { "name": "Bolivia", "group": "C" },
+      { "name": "United States", "group": "C" },
+      { "name": "Panama", "group": "C" },
+      { "name": "Uruguay", "group": "C" },
+      { "name": "Colombia", "group": "D" },
+      { "name": "Brazil", "group": "D" },
+      { "name": "Paraguay", "group": "D" },
+      { "name": "Costa Rica", "group": "D" }
+    ]
+  }
+  
