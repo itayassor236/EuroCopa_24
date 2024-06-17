@@ -178,7 +178,7 @@ app.get('/api/matches', (req, res) => {
 // Endpoint to fetch predicted lineups for a specific team
 app.get('/api/predicted-lineups/:team', (req, res) => {
   const { team } = req.params;
-  const filePath = 'excels\\euro2024_players.xlsx';
+  const filePath = path.join(__dirname, 'excels', 'euro2024_players.xlsx');
 
   // Check if the file exists
   if (!fs.existsSync(filePath)) {
@@ -326,7 +326,7 @@ app.get('/api/standings', (req, res) => {
 });
 
 app.get('/api/top-players', (req, res) => {
-  const filePath = 'excels\\euro2024_players.xlsx';
+  const filePath = path.join(__dirname, 'excels', 'euro2024_players.xlsx');
 
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({ error: 'Excel file not found' });
