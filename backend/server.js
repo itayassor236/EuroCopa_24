@@ -377,52 +377,52 @@ app.get('/',  (req, res) => {
   res.send('Hello, the server is running!');
 });
 
-app.get('/api/match-result/:gameId', (req, res) => {
-  try {
-    const workbook = xlsx.readFile(path.join(__dirname, 'excels', 'results.xlsx'));
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
+// app.get('/api/match-result/:gameId', (req, res) => {
+//   try {
+//     const workbook = xlsx.readFile(path.join(__dirname, 'excels', 'results.xlsx'));
+//     const sheetName = workbook.SheetNames[0];
+//     const worksheet = workbook.Sheets[sheetName];
 
-    const data = xlsx.utils.sheet_to_json(worksheet);
+//     const data = xlsx.utils.sheet_to_json(worksheet);
 
-    const gameId = req.params.gameId;
-    const matchData = data.find(match => match.match === gameId);
+//     const gameId = req.params.gameId;
+//     const matchData = data.find(match => match.match === gameId);
 
-    if (!matchData) {
-      return res.status(404).json({ message: 'Match not found' });
-    }
+//     if (!matchData) {
+//       return res.status(404).json({ message: 'Match not found' });
+//     }
 
-    const scoreParts = matchData.match.split(' ')[1].split('-');
-    const team1 = matchData.match.split(' ')[0];
-    const team2 = matchData.match.split(' ')[2];
+//     const scoreParts = matchData.match.split(' ')[1].split('-');
+//     const team1 = matchData.match.split(' ')[0];
+//     const team2 = matchData.match.split(' ')[2];
 
-    const result = {
-      team1: team1,
-      score1: parseInt(scoreParts[0]),
-      team2: team2,
-      score2: parseInt(scoreParts[1]),
-      goalScorers: []
-    };
+//     const result = {
+//       team1: team1,
+//       score1: parseInt(scoreParts[0]),
+//       team2: team2,
+//       score2: parseInt(scoreParts[1]),
+//       goalScorers: []
+//     };
 
-    for (let i = 1; i <= 10; i++) {
-      const scorerKey = `Scorer_${i}`;
-      if (matchData[scorerKey]) {
-        const scorerParts = matchData[scorerKey].split(', ');
-        const scorer = {
-          player: scorerParts[0],
-          minute: scorerParts[1],
-          team: scorerParts[2]
-        };
-        result.goalScorers.push(scorer);
-      }
-    }
+//     for (let i = 1; i <= 10; i++) {
+//       const scorerKey = `Scorer_${i}`;
+//       if (matchData[scorerKey]) {
+//         const scorerParts = matchData[scorerKey].split(', ');
+//         const scorer = {
+//           player: scorerParts[0],
+//           minute: scorerParts[1],
+//           team: scorerParts[2]
+//         };
+//         result.goalScorers.push(scorer);
+//       }
+//     }
 
-    res.json(result);
-  } catch (error) {
-    console.error('Error reading Excel file:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+//     res.json(result);
+//   } catch (error) {
+//     console.error('Error reading Excel file:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
