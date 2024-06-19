@@ -1,41 +1,67 @@
 /* GameAnalysisPage.css */
 
 .header {
-    background-color: #4096ff;
-    padding: 0 24px;
-  }
-  
-  .content {
-    padding: 24px;
-  }
-  
-  .site-layout-background {
-    background: #fff;
-  }
-  
-  .game-analysis {
-    text-align: center;
-  }
-  
-  .countdown {
-    margin: 20px 0;
-  }
-  
-  .lineups {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .lineup {
-    width: 45%;
-  }
-  
-  .lineup ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .lineup li {
-    margin: 5px 0;
-  }
-  
+  background-color: #4096ff;
+  padding: 0 24px;
+}
+
+.content {
+  padding: 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.game-analysis {
+  text-align: center;
+}
+
+.countdown {
+  margin: 20px 0;
+}
+
+.lineups {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lineup {
+  width: 45%;
+}
+
+.lineup ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.lineup li {
+  margin: 5px 0;
+}
+
+/* Styling for Scorers and Lineups */
+
+.goal-scorers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goal-scorers .team-scorers {
+  width: 45%; /* Adjust width as needed */
+}
+
+.goal-scorers .team-scorers h4 {
+  font-size: 18px; /* Increase font size for team headers */
+  margin-bottom: 10px;
+}
+
+.goal-scorers .team-scorers ul {
+  padding: 0;
+  margin: 0;
+}
+
+.goal-scorers .team-scorers ul li {
+  font-size: 16px; /* Increase font size for player names */
+  margin-bottom: 5px;
+}
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Layout, Statistic, Table, Spin } from 'antd';
+import { Layout, Statistic, Spin } from 'antd';
 import Navbar from './Navbar';
 import './GameAnalysisPage.css';
 
@@ -15,6 +15,7 @@ const GameAnalysisPage = ({ user }) => {
   const [predictedLineup2, setPredictedLineup2] = useState([]);
   const [standings, setStandings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [matchResult, setMatchResult] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,29 +29,43 @@ const GameAnalysisPage = ({ user }) => {
         const matchDateTimeString = `${matchData.date} ${matchData.time}`;
         const matchDateTime = new Date(matchDateTimeString);
 
-        const [response1, response2, standingsResponse] = await Promise.all([
-          fetch(`https://eurocopa-24-backend.onrender.com/api/predicted-lineups/${encodeURIComponent(matchData.team1)}`),
-          fetch(`https://eurocopa-24-backend.onrender.com/api/predicted-lineups/${encodeURIComponent(matchData.team2)}`),
-          fetch('https://eurocopa-24-backend.onrender.com/api/standings')
-        ]);
-
-        if (!response1.ok || !response2.ok || !standingsResponse.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const [predictedLineup1, predictedLineup2, standingsData] = await Promise.all([
-          response1.json(),
-          response2.json(),
-          standingsResponse.json()
-        ]);
-
         setMatchDetails(matchData);
         setCountdownDeadline(matchDateTime);
-        setPredictedLineup1(predictedLineup1);
-        setPredictedLineup2(predictedLineup2);
-        setStandings(standingsData);
 
         setLoading(false);
+
+        if (isCountdownOver(matchDateTime)) {
+          // Fetch match result if countdown is over
+          const matchResultResponse = await fetch(`https://eurocopa-24-backend.onrender.com/api/match-result/${gameId}`);
+          //const matchResultResponse = await fetch(`http://localhost:8000/api/match-result/${gameId}`);
+          if (!matchResultResponse.ok) {
+            throw new Error('Failed to fetch match result');
+          }
+          const matchResultData = await matchResultResponse.json();
+          setMatchResult(matchResultData);
+          console.log(matchResultData);
+        } else {
+          // Fetch predicted lineups and standings if countdown is not over
+          const [predictedLineup1Response, predictedLineup2Response, standingsResponse] = await Promise.all([
+            fetch(`https://eurocopa-24-backend.onrender.com/api/predicted-lineups/${encodeURIComponent(matchData.team1)}`),
+            fetch(`https://eurocopa-24-backend.onrender.com/api/predicted-lineups/${encodeURIComponent(matchData.team2)}`),
+            fetch('https://eurocopa-24-backend.onrender.com/api/standings')
+          ]);
+
+          if (!predictedLineup1Response.ok || !predictedLineup2Response.ok || !standingsResponse.ok) {
+            throw new Error('Failed to fetch predicted lineups or standings');
+          }
+
+          const [predictedLineup1Data, predictedLineup2Data, standingsData] = await Promise.all([
+            predictedLineup1Response.json(),
+            predictedLineup2Response.json(),
+            standingsResponse.json()
+          ]);
+
+          setPredictedLineup1(predictedLineup1Data);
+          setPredictedLineup2(predictedLineup2Data);
+          setStandings(standingsData);
+        }
       } catch (error) {
         console.error('Error fetching data: ', error);
         setLoading(false);
@@ -61,6 +76,11 @@ const GameAnalysisPage = ({ user }) => {
       fetchData();
     }
   }, [gameId]);
+
+  const isCountdownOver = (deadline) => {
+    const currentDateTime = new Date();
+    return deadline && deadline.getTime() <= currentDateTime.getTime();
+  };
 
   if (loading) {
     return <Spin size="large" />;
@@ -80,20 +100,36 @@ const GameAnalysisPage = ({ user }) => {
                 <Countdown title="Time Remaining" value={countdownDeadline} />
               )}
             </div>
-            <div className="lineups">
-              <h2>{matchDetails.team1} Predicted Lineup:</h2>
-              <ul>
-                {predictedLineup1.map((player, index) => (
-                  <li key={index}>{player}</li>
-                ))}
-              </ul>
-              <h2>{matchDetails.team2} Predicted Lineup:</h2>
-              <ul>
-                {predictedLineup2.map((player, index) => (
-                  <li key={index}>{player}</li>
-                ))}
-              </ul>
-            </div>
+            {!isCountdownOver(countdownDeadline) && (
+              <div className="lineups">
+                <h2>{matchDetails.team1} Predicted Lineup:</h2>
+                <ul>
+                  {predictedLineup1.map((player, index) => (
+                    <li key={index}>{player}</li>
+                  ))}
+                </ul>
+                <h2>{matchDetails.team2} Predicted Lineup:</h2>
+                <ul>
+                  {predictedLineup2.map((player, index) => (
+                    <li key={index}>{player}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {isCountdownOver(countdownDeadline) && matchResult && (
+              <div className="match-result">
+                <h2>Match Result:</h2>
+                <p>{matchResult.team1} {matchResult.score1} - {matchResult.score2} {matchResult.team2}</p>
+                <h3>Goal Scorers:</h3>
+                <ul>
+                  {matchResult.goalScorers.map((scorer, index) => (
+                    <li key={index}>
+                      {scorer.player} ({scorer.minute}')
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </Content>
@@ -103,4 +139,3 @@ const GameAnalysisPage = ({ user }) => {
 };
 
 export default GameAnalysisPage;
-

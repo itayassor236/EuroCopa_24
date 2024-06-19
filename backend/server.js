@@ -168,7 +168,7 @@ app.get('/api/matches', (req, res) => {
     }));
 
     const validMatches = processMatches(parsedMatches);
-    res.json(validMatches);
+    //res.json(validMatches);
   } catch (error) {
     console.error('Error reading Excel file:', error);
     res.status(500).json({ error: 'Error reading Excel file' });
@@ -378,28 +378,31 @@ app.get('/',  (req, res) => {
 });
 
 app.get('/api/match-result/:gameId', (req, res) => {
+  const filePath = path.join(__dirname, 'excels', 'results.xlsx');
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'Excel file not found' });
+  }
+
   try {
-    const workbook = xlsx.readFile(path.join(__dirname, 'excels', 'results.xlsx'));
+    const workbook = xlsx.readFile(filePath);
     const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
+    const sheet = workbook.Sheets[sheetName];
+    const data = xlsx.utils.sheet_to_json(sheet);
 
-    const data = xlsx.utils.sheet_to_json(worksheet);
-
-    const gameId = req.params.gameId;
-    const matchData = data.find(match => match.match === gameId);
-
+    const gameId = parseInt(req.params.gameId);
+    const matchData = data.find(match => match.matchid === gameId);
+    console.log('match data: ',matchData);
     if (!matchData) {
       return res.status(404).json({ message: 'Match not found' });
     }
 
-    const scoreParts = matchData.match.split(' ')[1].split('-');
-    const team1 = matchData.match.split(' ')[0];
-    const team2 = matchData.match.split(' ')[2];
+    const scoreParts = matchData.result.split(',');
+    console.log('goals team1: ',parseInt(scoreParts[0]));
+    console.log('goals team2: ',parseInt(scoreParts[1]));
 
     const result = {
-      team1: team1,
       score1: parseInt(scoreParts[0]),
-      team2: team2,
       score2: parseInt(scoreParts[1]),
       goalScorers: []
     };
@@ -407,7 +410,10 @@ app.get('/api/match-result/:gameId', (req, res) => {
     for (let i = 1; i <= 10; i++) {
       const scorerKey = `Scorer_${i}`;
       if (matchData[scorerKey]) {
-        const scorerParts = matchData[scorerKey].split(', ');
+        const scorerParts = matchData[scorerKey].split(',');
+        console.log('scorer: ',scorerParts[0]);
+        console.log('minute: ',scorerParts[1]);
+        console.log('team: ',scorerParts[2]);
         const scorer = {
           player: scorerParts[0],
           minute: scorerParts[1],
