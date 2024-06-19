@@ -168,7 +168,7 @@ app.get('/api/matches', (req, res) => {
     }));
 
     const validMatches = processMatches(parsedMatches);
-    //res.json(validMatches);
+    res.json(validMatches);
   } catch (error) {
     console.error('Error reading Excel file:', error);
     res.status(500).json({ error: 'Error reading Excel file' });
